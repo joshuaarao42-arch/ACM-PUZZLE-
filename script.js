@@ -1,10 +1,7 @@
-// Puzzle settings
-// Add a URL to open a page after the final puzzle.
-const FINAL_PAGE_URL = ""; // Demo mode: stay on this page.
+const FINAL_PAGE_URL = "";
 
-// Edit the puzzles here; cipher text is generated from the answer and shift.
 const PUZZLES = [
-  { name: "Launch window",   level: "Unclassified",     shift: 3,  plain: "JOIN THE MISSION",
+  { name: "Launch window",   level: "Cadet",     shift: 3,  plain: "JOIN THE MISSION",
     hint: "Julius Caesar liked small shifts. Try a shift of 3." },
   { name: "Orbital relay",   level: "Navigator", shift: 7,  plain: "CODE BEYOND THE STARS",
     hint: "The shift is the number of days in a week." },
@@ -96,19 +93,12 @@ async function runQueue() {
 const wheel = $("wheel");
 function buildWheel() {
   const ns = "http://www.w3.org/2000/svg";
-  let svg = `<defs>
-               <linearGradient id="ufoHull" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#253e70"/><stop offset=".48" stop-color="#101c3a"/><stop offset="1" stop-color="#4cc3ff"/></linearGradient>
-               <radialGradient id="ufoDome"><stop stop-color="#315e91" stop-opacity=".95"/><stop offset="1" stop-color="#10172f" stop-opacity=".98"/></radialGradient>
-               <filter id="ufoGlow"><feGaussianBlur stdDeviation="2.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-             </defs>
-             <circle cx="120" cy="120" r="116" fill="#050a19" stroke="#4cc3ff" stroke-opacity=".5" stroke-width="2"/>
-             <circle cx="120" cy="120" r="109" fill="url(#ufoHull)" stroke="#a6ddff" stroke-opacity=".45" stroke-width="1.5"/>
-             <circle cx="120" cy="120" r="99" fill="none" stroke="#7da7e5" stroke-opacity=".42" stroke-width="2"/>
-             <circle cx="120" cy="120" r="86" fill="rgba(3,8,28,.6)" stroke="#8b5cf6" stroke-opacity=".65" stroke-width="2"/>
-             <circle cx="120" cy="120" r="58" fill="url(#ufoDome)" stroke="#a6ddff" stroke-opacity=".65" stroke-width="2"/>
-             <g fill="#8cf5ff" filter="url(#ufoGlow)"><circle cx="120" cy="8" r="3"/><circle cx="199" cy="41" r="3"/><circle cx="232" cy="120" r="3"/><circle cx="199" cy="199" r="3"/><circle cx="120" cy="232" r="3"/><circle cx="41" cy="199" r="3"/><circle cx="8" cy="120" r="3"/><circle cx="41" cy="41" r="3"/></g>
-             <text x="120" y="114" fill="#d8edff" style="font-size:7px">ENCRYPTED</text>
-             <text x="120" y="127" fill="#8cf5ff" style="font-size:7px">DECODED</text>`;  let outer = "", inner = "";
+  let svg = `<circle cx="120" cy="120" r="112" fill="rgba(3,8,28,.6)" stroke="rgba(76,195,255,.4)"/>
+             <circle cx="120" cy="120" r="86" fill="none" stroke="rgba(139,92,246,.45)"/>
+             <circle cx="120" cy="120" r="58" fill="rgba(5,8,22,.8)" stroke="rgba(120,150,255,.25)"/>
+             <text x="120" y="114" fill="#9aa7d1" style="font-size:7px">ENCRYPTED OUTSIDE</text>
+             <text x="120" y="127" fill="#9aa7d1" style="font-size:7px">DECODED INSIDE</text>`;
+  let outer = "", inner = "";
   for (let i = 0; i < 26; i++) {
     const rot = i * (360 / 26);
     outer += `<text class="o-letter" x="120" y="20" transform="rotate(${rot} 120 120)">${A[i]}</text>`;
